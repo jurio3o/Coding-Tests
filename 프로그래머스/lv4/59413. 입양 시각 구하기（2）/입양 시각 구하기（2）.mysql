@@ -1,0 +1,15 @@
+-- 코드를 입력하세요
+#임시 테이블 생성
+WITH RECURSIVE mytable AS (
+    SELECT 0 AS h
+    UNION ALL
+    SELECT h+1 FROM mytable WHERE h < 23
+)
+
+
+SELECT h Hour , count(ANIMAL_ID) count
+FROM mytable
+LEFT OUTER JOIN ANIMAL_OUTS
+ON mytable.h = hour(DATETIME) 
+group by Hour
+order by Hour
