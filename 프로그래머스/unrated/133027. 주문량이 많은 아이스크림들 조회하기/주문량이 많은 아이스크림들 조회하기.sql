@@ -1,0 +1,19 @@
+WITH tb AS(
+    SELECT 
+        FLAVOR, 
+        SUM(TOTAL_ORDER)AS total 
+    FROM JULY
+    GROUP BY FLAVOR
+    UNION ALL 
+    SELECT
+        FLAVOR, 
+        SUM(TOTAL_ORDER)AS total 
+    FROM FIRST_HALF
+    GROUP BY FLAVOR
+)
+SELECT
+    FLAVOR
+FROM tb
+GROUP BY FLAVOR
+ORDER BY sum(total) DESC
+LIMIT 3
